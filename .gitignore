@@ -1,0 +1,18 @@
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Mm]emoryCaptures/
+/[Uu]serSettings/
+
+# Asset meta files must be tracked, but internal Unity files should not
+/[Aa]ssets/AssetStoreTools*
+
+# Visual Studio / Rider generated files
+.vs/
+.idea/
+*.sln
+*.csproj
+*.unitypackage
