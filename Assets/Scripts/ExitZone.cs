@@ -17,7 +17,7 @@ public class ExitZone : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.ShowMessage(failMessage, 2f);
+            GameManager.Instance.ShowMessage(failMessage, Color.yellow, 2f);
         }
     }
 }

@@ -34,8 +34,18 @@ public class TimePickup : MonoBehaviour
 
         string sign = timeAmount >= 0 ? "+" : "-";
         string label = type == PickupType.Broken ? "Time Lost" : "Time";
-        GameManager.Instance.ShowMessage(sign + Mathf.Abs(timeAmount).ToString("0") + " " + label);
+        string msg = sign + Mathf.Abs(timeAmount).ToString("0") + " " + label;
 
+        Color msgColor;
+        switch (type)
+        {
+            case PickupType.Green:  msgColor = Color.green; break;
+            case PickupType.Gold:   msgColor = new Color(1f, 0.84f, 0f); break; // gold
+            case PickupType.Broken: msgColor = Color.red; break;
+            default:                msgColor = Color.white; break;
+        }
+
+        GameManager.Instance.ShowMessage(msg, msgColor);
         Destroy(gameObject);
     }
 }
