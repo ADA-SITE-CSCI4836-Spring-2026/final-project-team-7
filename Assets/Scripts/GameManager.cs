@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [Header("Time Settings")]
-    public float startingTime = 30f;
+    public float startingTime = 5f;
     public float normalDrainRate = 1f;
 
     [Header("UI Refs")]
