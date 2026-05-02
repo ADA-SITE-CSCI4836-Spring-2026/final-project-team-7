@@ -3595,31 +3595,40 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move with WASD or Arrow Keys.
+  m_text: 'Objective:
+
+    Collect all 3 flags before your timer reaches zero.
 
 
-    Your time is your health.
+    Controls:
 
-    Every
-    second, your time decreases.
+    WASD / Arrow Keys - Move
 
+    Mouse - Rotate camera and player direction
 
-    Collect green shards to gain time.
+    Space - Jump once while grounded
 
-    Collect
-    golden shards for bonus time.
+    K - Use a ZAP charge to clear nearby zombies
 
-    Avoid red broken shards.
-
-    Avoid purple
-    drain zones.
+    Esc - Pause
 
 
-    Blue pickups freeze time for a few seconds.
+    Pickups:
+
+    Green + token - Add time
+
+    Gold + token - Add bonus time
+
+    Red broken token - Lose time
+
+    Purple lightning token - Gain ZAP charge
 
 
-    Reach the
-    exit with at least 10 seconds remaining.'
+    Watch out:
+
+    Zombies chase you and drain time when they touch you.
+
+    Purple drain zones consume time faster.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

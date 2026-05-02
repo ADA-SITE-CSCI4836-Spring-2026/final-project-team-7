@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU ESCAPED TIME!
+  m_text: YOU COLLECTED ALL FLAGS!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3087,10 +3087,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 727404986}
   anim: {fileID: 727404984}
+  cameraFollow: {fileID: 963194229}
   speed: 5
   rotationSpeed: 10
   gravity: -9.81
   jumpHeight: 1.5
+  groundProbeDistance: 0.18
+  groundProbeRadius: 0.22
+  rotateWithCamera: 1
+  fallResetY: -6
+  safeGroundProbeHeight: 20
+  safeGroundProbeDistance: 60
+  groundOffset: 0.08
 --- !u!4 &727404988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca7dff3ea87a13e4aaa993f79c9d1b23, type: 3}
@@ -3700,8 +3708,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 727404988}
-  positionOffset: {x: 0, y: 3, z: -6}
-  eulerAngles: {x: 25, y: 0, z: 0}
+  targetOffset: {x: 0, y: 1.55, z: 0}
+  distance: 4.8
+  minDistance: 2.3
+  maxDistance: 7.5
+  followSmoothTime: 0.04
+  rotationSmooth: 25
+  mouseSensitivity: 2.4
+  keyboardRotateSpeed: 120
+  zoomSensitivity: 2
+  minPitch: -8
+  maxPitch: 48
+  requireRightMouseButton: 0
+  lockCursorDuringGameplay: 1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  collisionRadius: 0.16
+  collisionBuffer: 0.2
 --- !u!1 &1144149711
 GameObject:
   m_ObjectHideFlags: 0
@@ -5798,7 +5822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You reached the exit before time consumed you.
+  m_text: You collected all three flags before time consumed you.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
