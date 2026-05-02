@@ -13,48 +13,57 @@ public class BossController : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 1.5f;
 
-    // Cache variables to prevent garbage collection
+    // NEW — public toggle so GameManager can freeze the player
+    public bool CanMove { get; set; } = true;
+
     private Vector3 movement;
     private Vector3 velocity;
-    private readonly int speedHash = Animator.StringToHash("Speed"); // More efficient than string lookups
+    private readonly int speedHash = Animator.StringToHash("Speed");
 
     void Update()
     {
-        // 1. Handle Gravity & Grounding
+        // Gravity & Grounding (always runs so player doesn't float when frozen)
         if (controller.isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f; // Keep grounded
+            velocity.y = -2f;
         }
 
-        // 2. Get Input
-        float x = Input.GetAxisRaw("Horizontal"); // Raw is snappier for Jams
+        // NEW — if frozen, skip input but still drop with gravity
+        if (!CanMove)
+        {
+            movement = Vector3.zero;
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+            if (anim != null) anim.SetFloat(speedHash, 0f);
+            return;
+        }
+
+        // Input
+        float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
         movement.Set(x, 0f, z);
         movement.Normalize();
 
-        // 3. Movement & Rotation
+        // Movement & Rotation
         if (movement.sqrMagnitude >= 0.01f)
         {
-            // Smooth Rotation
             float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            
-            // Move relative to world
             controller.Move(movement * speed * Time.deltaTime);
         }
 
-        // 4. Handle Jumping
+        // Jumping
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        // 5. Apply Gravity
+        // Apply gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // 6. Optimized Animation Update
+        // Animator
         if (anim != null)
         {
             anim.SetFloat(speedHash, movement.magnitude);
